@@ -87,7 +87,7 @@ fi
 
 if [[ -z "$1" ]]; then
     echo ""
-    echo_error "Missing mandatory parameter <pool_name>p"
+    echo_error "Missing mandatory parameter <pool_name>"
     usage
 fi
 

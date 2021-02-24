@@ -146,31 +146,31 @@ while getopts $opts o; do
     case "${o}" in
         1)
             az1=${OPTARG}
-            (($verbose == 1)) && echo "az1-class=""$az1"
+            (($verbose == 1)) && echo "az1-class=$az1"
             ;;
         2)
             az2=${OPTARG}
-            (($verbose == 1)) && echo "az2-class=""$az2"
+            (($verbose == 1)) && echo "az2-class=$az2"
             ;;
         3)
             az3=${OPTARG}
-            (($verbose == 1)) && echo "az3-class=""$az3"
+            (($verbose == 1)) && echo "az3-class=$az3"
             ;;
         v)
             verbose=1
             echo "Running in verbose mode" 
             ;;
 		s)
-			rule_suffix=${OPTARG}
-			(($verbose == 1)) && echo "Rule name suffix=""$rule_suffix"
+			rule_suffix="_${OPTARG}"
+			(($verbose == 1)) && echo "Rule name suffix=$rule_suffix"
 			;;
 		t)
 			choseleaf_type=${OPTARG}
-			(($verbose == 1)) && echo "Choose leaf type=""$choseleaf_type"
+			(($verbose == 1)) && echo "Choose leaf type=$choseleaf_type"
 			;;
 		j)
 			json_file=${OPTARG}
-			(($verbose == 1)) && echo "Reading CRUSH tree from=""$json_file"
+			(($verbose == 1)) && echo "Reading CRUSH tree from=$json_file"
 			;;
         x)
             set -x
@@ -183,7 +183,7 @@ while getopts $opts o; do
         h)  usage nosapce
             ;;
         *)
-            echo_error "Urecognized parameter ""${o}"
+            echo_error "Urecognized parameter ${o}"
             usage
             ;;
     esac
@@ -195,7 +195,7 @@ check_params
 (($verbose == 1)) && echo "*** Parsed command line ***"
 
 max_rule=$(get_max_rule)
-(( $verbose == 1)) && echo "max_rule=""$max_rule"
+(( $verbose == 1)) && echo "max_rule=$max_rule"
 
 error=0
 
@@ -215,7 +215,7 @@ if [[ -z $choseleaf_type ]]; then
 	fi
 fi
 
-(( $verbose == 1 )) && echo "Choseleaf type="$choseleaf_type
+(( $verbose == 1 )) && echo "Choseleaf type=$choseleaf_type"
 
 if [[ "$az3" == "" ]]; then
     (($verbose == 1)) && echo "==> 2 AZs"
