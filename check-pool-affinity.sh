@@ -168,9 +168,10 @@ primaries=$($CEPH pg dump pgs_brief 2>/dev/null  | awk "/^$pool_num./ {print  \$
 # separatoe is colon ':'. This is broken into 2 lines since for some reason the sed in the second 
 # line does not work well when piped to the first line 
 #
-primaries=$(echo "$primaries" | sed "s/ /\n/g" | sort | uniq )
-# shellcheck disable=SC2001
-primaries=$(echo "$primaries" | sed "s/ /:/g")
+# shellcheck disable=SC2086
+primaries=$(echo $primaries | sed "s/ /\n/g" | sort | uniq )
+# shellcheck disable=SC2001,2086
+primaries=$(echo $primaries | sed "s/ /:/g")
 
 has_read_affinity
 
