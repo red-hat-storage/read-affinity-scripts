@@ -49,7 +49,7 @@ function has_read_affinity() {
 	# loop over all OSDs in $primaries and check if they belong to the same top level failure domein 
 	# Return:
 	#   0 - No affinity
-    #   1 - Pool has affinity ti a failure domain
+    #   1 - Pool has affinity to a failure domain
 	##
     local failure_domain=""
     IFS=':' read -ra prim_array <<< "$primaries"
