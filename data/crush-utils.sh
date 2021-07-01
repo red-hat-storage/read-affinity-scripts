@@ -54,7 +54,7 @@ if [[ -n $CEPH_CLUSTER_NAME ]]; then
 fi
 $CEPH -s >/dev/null 2>&1
 if [[ $? -ne 0 ]]; then
-	echo_error "Could not connect to cluster $CEPH_CLUSTER_NAME (command $CEPH -s failed)"
+	echo_error "Could not connect to the ceph cluster (command $CEPH -s failed)"
 	exit 1
 fi
 
