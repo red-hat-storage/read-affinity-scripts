@@ -30,21 +30,21 @@ ofile=$1
 
 set -o noclobber 
 
-echo " Ceph pools" 2> /dev/null 1> $ofile
+echo " Ceph pools" 2> /dev/null 1> "$ofile"
 if [[ $? -ne 0 ]]; then
-    echo_error "cannot overwrite existing file '$ofile'"
+    echo_error "Cannot overwrite existing file '$ofile'"
     exit
 fi
 
-echo " ==========" >> $ofile
+{
+echo " ==========";
+ceph osd pool ls detail;
 
-ceph osd pool ls detail >> $ofile
-
-echo "" >> $ofile
-echo " Crush rules" >> $ofile
-echo " ===========" >> $ofile
-
-ceph osd crush rule dump >> $ofile
+echo ""; 
+echo " Crush rules";
+echo " ===========";
+ceph osd crush rule dump;
+} >> "$ofile"
 
 echo "Output was saved to $ofile"
 
